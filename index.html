@@ -1,0 +1,654 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Math 10 Midterm Drills</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: one exam-booklet column; item numbers sit in a mono gutter, answers are shaded bubbles like a UP answer sheet. */
+:root{
+  --bg:#F1F2EE; --surface:#FFFFFF; --ink:#1B1A1D; --muted:#5D5A62; --rule:#D8D9D3;
+  --maroon:#7B1113; --maroon-soft:#F2E2E2; --graphite:#2B2A2E;
+  --good:#0F5A33; --good-soft:#E0EEE5; --bad:#B23A16; --bad-soft:#F7E4DC;
+  --display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --serif:"Source Serif 4", Georgia, "Times New Roman", serif;
+  --mono:"JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#131214; --surface:#1C1A1E; --ink:#ECEAEE; --muted:#A39FA8; --rule:#323036;
+  --maroon:#E8898B; --maroon-soft:#3A2224; --graphite:#DCD8E0;
+  --good:#63C892; --good-soft:#1C3326; --bad:#F2905F; --bad-soft:#3A2419; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#131214; --surface:#1C1A1E; --ink:#ECEAEE; --muted:#A39FA8; --rule:#323036;
+  --maroon:#E8898B; --maroon-soft:#3A2224; --graphite:#DCD8E0;
+  --good:#63C892; --good-soft:#1C3326; --bad:#F2905F; --bad-soft:#3A2419; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--display);font-size:15px;line-height:1.5}
+.wrap{max-width:860px;margin:0 auto;padding-inline:20px;padding-block:28px 80px}
+@media (max-width:480px){.wrap{padding-inline:16px}}
+
+header.top{display:grid;gap:6px;padding-block:8px 18px}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--maroon)}
+h1{font-size:clamp(30px,6vw,46px);font-weight:800;line-height:1.02;margin:0;letter-spacing:-.02em;text-wrap:balance}
+.lede{color:var(--muted);margin:4px 0 0;max-width:62ch}
+
+.sets{display:flex;gap:8px;flex-wrap:wrap;margin-block:10px 0}
+.settab{flex:1 1 150px;text-align:left;border:1.5px solid var(--rule);background:var(--surface);color:var(--ink);border-radius:10px;padding:10px 14px;cursor:pointer;font:inherit;display:grid;gap:2px}
+.settab b{font-size:18px;font-weight:800}
+.settab span{font-family:var(--mono);font-size:12px;color:var(--muted)}
+.settab[aria-selected="true"]{border-color:var(--maroon);box-shadow:inset 0 0 0 1px var(--maroon)}
+.settab[aria-selected="true"] b{color:var(--maroon)}
+.settab:focus-visible,.btn:focus-visible,.bub:focus-visible,.seg button:focus-visible,select:focus-visible,textarea:focus-visible,.jump a:focus-visible{outline:2px solid var(--maroon);outline-offset:2px}
+
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--rule);margin-inline:-20px;padding:10px 20px;display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center}
+@media (max-width:480px){.bar{margin-inline:-16px;padding-inline:16px;gap:8px}.bar .count{display:none}.jump a{font-size:12px;padding:3px 8px}.seg button,.btn{font-size:12px}.spacer{display:none}}
+.jump{display:flex;gap:4px;flex-wrap:wrap}
+.jump a{font-size:13px;color:var(--ink);text-decoration:none;padding:4px 9px;border-radius:999px;border:1px solid var(--rule);background:var(--surface)}
+.jump a:hover{border-color:var(--maroon)}
+.spacer{flex:1}
+.seg{display:inline-flex;border:1px solid var(--rule);border-radius:999px;overflow:hidden;background:var(--surface)}
+.seg button{font:inherit;font-size:13px;border:0;background:transparent;color:var(--muted);padding:5px 12px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--graphite);color:var(--bg)}
+.count{font-family:var(--mono);font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+.btn{font:inherit;font-size:13px;font-weight:600;border-radius:8px;padding:6px 12px;cursor:pointer;border:1.5px solid var(--maroon);background:var(--maroon);color:var(--surface)}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--rule);font-weight:400}
+.btn.ghost:hover{border-color:var(--ink)}
+
+.score{margin-block:18px 6px;background:var(--surface);border:1px solid var(--rule);border-radius:12px;padding:16px 18px;display:grid;gap:14px}
+.score-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 18px}
+.score-total{font-size:34px;font-weight:800;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.score-total small{font-size:15px;color:var(--muted);font-weight:400}
+.score-note{color:var(--muted);font-size:13px;flex:1 1 220px}
+.parts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.part{border-top:2px solid var(--rule);padding-top:6px}
+.part .k{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.part .v{font-size:20px;font-weight:600;font-variant-numeric:tabular-nums}
+.topics{display:grid;gap:8px}
+.topic{display:grid;grid-template-columns:150px minmax(0,1fr) 64px;gap:10px;align-items:center;font-size:13px}
+.track{height:8px;border-radius:99px;background:var(--rule);overflow:hidden}
+.fill{height:100%;background:var(--good);border-radius:99px;transition:width .3s}
+.topic .n{font-family:var(--mono);font-size:12px;text-align:right;color:var(--muted);font-variant-numeric:tabular-nums}
+@media (max-width:520px){.parts{grid-template-columns:1fr 1fr 1fr}.topic{grid-template-columns:96px minmax(0,1fr) 56px}}
+.filter{display:flex;gap:8px;align-items:center;font-size:13px;color:var(--muted)}
+
+section.part-sec{margin-top:34px}
+.sec-head{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;border-bottom:2px solid var(--ink);padding-bottom:6px}
+.sec-head h2{margin:0;font-size:22px;font-weight:800;letter-spacing:-.01em}
+.sec-head .roman{font-family:var(--mono);color:var(--maroon);font-size:14px}
+.sec-head p{margin:0;color:var(--muted);font-size:13px;flex:1 1 260px}
+
+ol.items{list-style:none;margin:0;padding:0}
+.item{display:grid;grid-template-columns:44px minmax(0,1fr);gap:4px 10px;padding-block:18px;border-bottom:1px solid var(--rule)}
+.item .num{font-family:var(--mono);font-weight:600;font-size:14px;color:var(--muted);padding-top:2px;font-variant-numeric:tabular-nums}
+.item.right .num{color:var(--good)} .item.wrong .num{color:var(--bad)}
+.tag{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.stem{font-family:var(--serif);font-size:16.5px;line-height:1.55;margin:0 0 10px;max-width:68ch}
+.opts{display:grid;gap:6px}
+.opts.tf{grid-template-columns:repeat(2,minmax(0,160px))}
+.bub{display:grid;grid-template-columns:28px minmax(0,1fr);gap:10px;align-items:center;text-align:left;font:inherit;font-family:var(--serif);font-size:15.5px;color:var(--ink);background:transparent;border:1px solid transparent;border-radius:8px;padding:5px 8px 5px 4px;cursor:pointer}
+.bub:hover:not(:disabled){background:var(--surface);border-color:var(--rule)}
+.bub:disabled{cursor:default}
+.dot{width:26px;height:26px;border-radius:50%;border:1.5px solid var(--muted);display:grid;place-items:center;font-family:var(--mono);font-size:12px;font-weight:600;color:var(--muted)}
+.bub.sel .dot{background:var(--graphite);border-color:var(--graphite);color:var(--bg)}
+.bub.is-key .dot{background:var(--good);border-color:var(--good);color:var(--surface)}
+.bub.is-key{background:var(--good-soft)}
+.bub.sel.is-wrong .dot{background:var(--bad);border-color:var(--bad);color:var(--surface)}
+.bub.sel.is-wrong{background:var(--bad-soft)}
+.why{grid-column:2;margin-top:8px;font-size:14px;line-height:1.55;border-left:3px solid var(--good);padding:6px 12px;background:var(--surface);border-radius:0 8px 8px 0;max-width:70ch}
+.item.wrong .why{border-left-color:var(--bad)}
+.why b{font-weight:600}
+.hide-correct .item.right{display:none}
+
+.ps{display:grid;gap:18px;margin-top:16px}
+.prob{background:var(--surface);border:1px solid var(--rule);border-radius:12px;padding:18px 20px;display:grid;gap:12px;min-width:0}
+.prob-head{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.prob-head h3{margin:0;font-size:18px;font-weight:700}
+.prob-head .pts{font-family:var(--mono);font-size:12px;color:var(--maroon);border:1px solid var(--maroon);border-radius:999px;padding:1px 8px}
+.prob-head .pn{font-family:var(--mono);font-weight:600;color:var(--muted)}
+.prob .txt{font-family:var(--serif);font-size:16px;line-height:1.6;min-width:0}
+.prob .txt p{margin:0 0 8px}
+.prob .txt ol{margin:6px 0 8px;padding-left:24px}
+.prob .txt li{margin-bottom:4px}
+.argline{font-family:var(--mono);font-size:14.5px;padding-left:16px;border-left:2px solid var(--rule)}
+.cipher{display:flex;flex-wrap:wrap;gap:5px;margin:8px 0}
+.cipher span{font-family:var(--mono);font-weight:600;font-size:17px;width:30px;height:36px;display:grid;place-items:center;border:1.5px solid var(--ink);border-radius:6px}
+.tblwrap{overflow-x:auto;max-width:100%}
+table.mini{border-collapse:collapse;font-family:var(--mono);font-size:13px;margin:6px 0 10px;font-variant-numeric:tabular-nums}
+table.mini td,table.mini th{border:1px solid var(--rule);padding:4px 9px;text-align:center}
+table.mini th{background:var(--bg);font-weight:600;white-space:nowrap}
+table.mini tr.hit td{background:var(--good-soft);color:var(--ink)}
+.rubric{font-family:var(--display);font-size:13px;color:var(--muted);border-top:1px dashed var(--rule);padding-top:8px;margin-top:6px}
+label.lab{font-size:12px;font-family:var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+textarea{width:100%;min-height:90px;resize:vertical;font-family:var(--mono);font-size:13.5px;color:var(--ink);background:var(--bg);border:1px solid var(--rule);border-radius:8px;padding:10px}
+.prob-actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+select{font:inherit;font-size:13px;color:var(--ink);background:var(--surface);border:1px solid var(--rule);border-radius:8px;padding:5px 8px}
+.sol{border-top:2px solid var(--good);padding-top:12px}
+.sol .k{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--good);margin-bottom:6px}
+footer{margin-top:40px;color:var(--muted);font-size:12.5px;font-family:var(--mono)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+html{scroll-behavior:smooth}
+section.part-sec,.prob{scroll-margin-top:72px}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div class="eyebrow">Math 10 · UP Manila · Modules 2, 4 &amp; 5</div>
+    <h1>Midterm Drills</h1>
+    <p class="lede">Three full practice sets in the midterm format: 20 true-or-false items, 50 multiple-choice items, and three 5-point problems each. None of the items repeat the modules, the quiz discussion, or the 2019 samplex.</p>
+    <div class="sets" role="tablist" id="setTabs"></div>
+  </header>
+
+  <div class="bar" id="bar">
+    <nav class="jump" aria-label="Jump to part">
+      <a href="#part-tf">I · True/False</a><a href="#part-mc">II · Multiple choice</a><a href="#part-ps">III · Problems</a>
+    </nav>
+    <span class="spacer"></span>
+    <div class="seg" role="group" aria-label="Mode">
+      <button type="button" id="modePractice" aria-pressed="true" title="See the answer as soon as you pick">Practice</button>
+      <button type="button" id="modeExam" aria-pressed="false" title="Answer everything, then check">Exam</button>
+    </div>
+    <span class="count" id="count"></span>
+    <button type="button" class="btn" id="checkBtn">Check answers</button>
+    <button type="button" class="btn ghost" id="resetBtn">Reset set</button>
+  </div>
+
+  <div class="score" id="score"></div>
+  <main id="main"></main>
+  <footer>Letter key for Part III: A = 1, B = 2, …, Y = 25, Z = 0. Your answers are saved in this browser only.</footer>
+</div>
+
+<script>
+/* Question bank. TF: [topic, statement, answer, why]. MC: [topic, stem, options, correctIndex, why, keepOrder?]
+   topic: L = Logic (Module 2), S = Sets (Module 4), N = Numbers & Patterns (Module 5) */
+const SETS = [
+/* ======================= SET 1 ======================= */
+{
+ id: 1,
+ tf: [
+  ["L","“Close the windows before the typhoon arrives.” is a mathematical statement.",false,"It is a command. Commands have no truth value, so it is not a statement."],
+  ["L","“The sum of two odd integers is even.” is a mathematical statement.",true,"It is declarative and has a definite truth value (true: (2a+1) + (2b+1) = 2(a+b+1))."],
+  ["L","If p ↔ q is true and p is false, then q is false.",true,"A true biconditional means p and q have the same truth value. Since p is false, q is false."],
+  ["L","~(p ∨ q) is equivalent to ~p ∨ ~q.",false,"De Morgan gives ~(p ∨ q) ≡ ~p ∧ ~q. Counterexample: p true, q false makes ~(p ∨ q) false but ~p ∨ ~q true."],
+  ["L","The negation of “Every barangay has a health center” is “Some barangays do not have a health center.”",true,"One barangay without a health center is enough to make the original false. ‘All A are B’ negates to ‘Some A are not B.’"],
+  ["L","If the contrapositive of a conditional is false, then the conditional itself is false.",true,"A conditional and its contrapositive are equivalent, so they always share the same truth value."],
+  ["L","An argument whose conclusion is true must be valid.",false,"Validity is about form. ‘If it is a cat, it is a mammal. Bantay is a mammal. So Bantay is a cat.’ can have a true conclusion and still be invalid (fallacy of the converse)."],
+  ["L","(p ∧ ~p) → q is a tautology.",true,"p ∧ ~p is always false, and a conditional with a false antecedent is always true. So the whole statement is true in every row."],
+  ["S","{2, 4, 6} ⊆ {x | x is an even natural number}.",true,"Each of 2, 4 and 6 is an even natural number, so every element of the left set is in the right set."],
+  ["S","A set with 5 elements has exactly 5 subsets that contain exactly one element.",true,"The one-element subsets are the singletons {a} for each element a, so there are exactly 5."],
+  ["S","For every set A in a universal set U, A ∪ A′ = U.",true,"Every element of U is either in A or not in A, so together A and A′ cover all of U."],
+  ["S","If A ∩ B = A ∪ B, then A = B.",true,"A ⊆ A ∪ B = A ∩ B ⊆ B, so A ⊆ B. By the same argument B ⊆ A. Therefore A = B."],
+  ["S","For any finite set A, n(A × A) = 2 · n(A).",false,"n(A × A) = n(A) · n(A) = n(A)². If n(A) = 3, then A × A has 9 ordered pairs, not 6."],
+  ["S","The set of real numbers between 0 and 0.001 is countable.",false,"Any interval of real numbers, however short, has the same cardinality as R, which is uncountable."],
+  ["S","The set of prime numbers is infinite.",true,"There is no largest prime (Euclid's argument), so the set of primes never ends."],
+  ["N","1 is a prime number.",false,"Module 5 states that 1 is neither prime nor composite. A prime must have exactly two factors, 1 and itself."],
+  ["N","The repeating decimal 0.333… is irrational.",false,"A repeating decimal is rational: 0.333… = 1/3."],
+  ["N","In Z₈, 6 ·₈ 5 = 6.",true,"6 × 5 = 30, and 30 = 3(8) + 6, so the remainder is 6."],
+  ["N","Every real number is also a complex number.",true,"Any real number a can be written as a + 0i, which has the complex form a + bi with b = 0."],
+  ["N","A regular pentagon has exactly 5 lines of symmetry.",true,"Each line runs from a vertex to the midpoint of the opposite side, and there are 5 vertices, like the starfish in Module 5."]
+ ],
+ mc: [
+  ["L","Which of the following is NOT a mathematical statement?",["Manila is the capital of the Philippines.","7 + 8 = 16","Is 91 a prime number?","Every rectangle has four right angles."],2,"A question has no truth value. The false equation 7 + 8 = 16 is still a statement."],
+  ["L","Let p: “The clinic is open” and q: “The doctor is in.” Which is the symbolic form of “The clinic is open but the doctor is not in”?",["p ∧ ~q","~p ∧ q","p → ~q","p ∨ ~q"],0,"‘But’ works like ‘and’ in logic, so the sentence is p ∧ ~q."],
+  ["L","Using the same p and q, which is the symbolic form of “It is not the case that the clinic is open or the doctor is in”?",["~(p ∨ q)","~p ∨ q","~p ∨ ~q","~(p ∧ q)"],0,"The negation applies to the whole disjunction, so the form is ~(p ∨ q)."],
+  ["L","Let p be true, and q and r be false. What is the truth value of (p → q) ∨ (~r ∧ p)?",["True","False","Cannot be determined","It is not a statement"],0,"p → q is T → F = F. ~r ∧ p is T ∧ T = T. So F ∨ T = T.",true],
+  ["L","Let p be false, and q and r be true. What is the truth value of [(p ∨ q) ↔ r] → ~q?",["True","False","Cannot be determined","It is not a statement"],1,"p ∨ q = T, and T ↔ r = T ↔ T = T. ~q = F. So T → F = F.",true],
+  ["L","If p → q is false, which of the following must be true?",["q → p is false","~p ∨ q is true","p ∧ ~q is true","p ↔ q is true"],2,"p → q is false only when p is true and q is false, which makes p ∧ ~q true. In that case q → p is true and p ↔ q is false."],
+  ["L","What is the negation of “x ≥ −3”?",["x ≤ −3","x < −3","x > −3","x ≠ −3"],1,"The negation of ‘at least −3’ is ‘less than −3’."],
+  ["L","What is the negation of “At most 30 students passed the exam”?",["At least 30 students passed the exam.","Fewer than 30 students passed the exam.","More than 30 students passed the exam.","Exactly 30 students passed the exam."],2,"‘At most 30’ means ≤ 30, and its negation is > 30. ‘At least 30’ still includes exactly 30."],
+  ["L","What is the negation of “Some vaccines cause fever”?",["Some vaccines do not cause fever.","No vaccine causes fever.","All vaccines cause fever.","Not all vaccines cause fever."],1,"To disprove ‘some’, you have to show there are none."],
+  ["L","What is the negation of “The tricycle is full and it is raining”?",["The tricycle is not full and it is not raining.","The tricycle is not full or it is not raining.","If the tricycle is full, then it is not raining.","The tricycle is full or it is raining."],1,"By De Morgan, ~(p ∧ q) ≡ ~p ∨ ~q."],
+  ["L","What is the negation of “If 2 is prime, then 2 is odd”?",["If 2 is not prime, then 2 is not odd.","If 2 is prime, then 2 is not odd.","2 is prime and 2 is not odd.","2 is not prime or 2 is odd."],2,"~(p → q) ≡ p ∧ ~q. The option ‘2 is not prime or 2 is odd’ is equivalent to the original statement, not its negation."],
+  ["L","What is the converse of “If a figure is a square, then it has four sides”?",["If a figure has four sides, then it is a square.","If a figure is not a square, then it does not have four sides.","If a figure does not have four sides, then it is not a square.","A figure is a square and it does not have four sides."],0,"The converse swaps the antecedent and the consequent: q → p."],
+  ["L","“Studying daily is necessary for passing Math 10.” This is equivalent to:",["If you study daily, then you pass Math 10.","If you pass Math 10, then you study daily.","If you do not pass Math 10, then you do not study daily.","You pass Math 10 if you study daily."],1,"A necessary condition is the consequent: pass → study daily."],
+  ["L","Which statement is equivalent to ~p → q?",["p ∨ q","~p ∨ q","p ∧ q","q → ~p"],0,"a → b ≡ ~a ∨ b. With a = ~p, this gives ~(~p) ∨ q = p ∨ q."],
+  ["L","Which statement is a contradiction (false in every row of its truth table)?",["p ↔ ~p","p → p","p ∨ ~p","(p ∧ q) → q"],0,"p and ~p always have opposite truth values, so p ↔ ~p is never true."],
+  ["L","“If the patient has measles, she has a rash. If she has a rash, she feels itchy. The patient does not feel itchy.” Which conclusion is valid?",["The patient has measles.","The patient has a rash.","The patient does not have measles.","No conclusion follows."],2,"The premises chain to measles → itchy. Since she is not itchy, modus tollens gives that she does not have measles."],
+  ["L","“Either the lab results are late or the doctor will see you now. The doctor will not see you now.” Which conclusion is valid?",["The lab results are late.","The lab results are on time.","The doctor will see you later.","No conclusion follows."],0,"From p ∨ q and ~q, you can conclude p (disjunctive syllogism)."],
+  ["L","“All cardiologists are physicians. No physician is a lawyer. Therefore, no lawyer is a cardiologist.” This argument is:",["Valid","Invalid"],0,"The cardiologist circle sits inside the physician circle, which is disjoint from the lawyer circle. So no lawyer can be a cardiologist.",true],
+  ["L","“Some jeepney drivers are singers. All singers are performers. Therefore, some jeepney drivers are performers.” This argument is:",["Valid","Invalid"],0,"The drivers who are singers lie inside the singer circle, which lies inside the performer circle. So those drivers are performers.",true],
+  ["L","“My lola drank ginger tea, and a week later her cough was gone. So ginger tea cures coughs.” Which fallacy is this?",["False cause","Ad hominem","Ad populum","Appeal to authority"],0,"It treats something that happened before as the cause. The cough may simply have run its course."],
+  ["S","Which is the roster form of {x | x ∈ N, x² < 20}?",["{1, 2, 3, 4}","{0, 1, 2, 3, 4}","{1, 2, 3, 4, 5}","{1, 4, 9, 16}"],0,"1, 4, 9 and 16 are less than 20, but 5² = 25 is not. In this course 0 is not in N."],
+  ["S","Which is the rule form of {3, 6, 9, 12, …}?",["{x | x is a multiple of 3 less than 12}","{x | x is a positive multiple of 3}","{x | x is an odd number}","{x | x is divisible by 6}"],1,"The list continues forever with every positive multiple of 3."],
+  ["S","Let U = {1, 2, …, 10}, A = {2, 3, 5, 7}, and B = {1, 2, 3, 4, 5}. What is A ∩ B?",["{2, 3, 5}","{1, 2, 3, 4, 5, 7}","{7}","{1, 4}"],0,"The elements in both sets are 2, 3 and 5."],
+  ["S","Using the same U, A and B, what is B − A?",["{7}","{1, 4}","{2, 3, 5}","{1, 4, 7}"],1,"Remove 2, 3 and 5 from B, which leaves {1, 4}."],
+  ["S","Using the same U, A and B, what is (A ∪ B)′?",["{6, 8, 9, 10}","{1, 4, 6, 8, 9, 10}","{6, 7, 8, 9, 10}","{8, 9, 10}"],0,"A ∪ B = {1, 2, 3, 4, 5, 7}. The rest of U is {6, 8, 9, 10}."],
+  ["S","Using the same A and B, how many subsets does A ∩ B have?",["3","6","8","16"],2,"A ∩ B = {2, 3, 5} has 3 elements, so it has 2³ = 8 subsets."],
+  ["S","Which set is always equal to A − (A − B)?",["A ∩ B","B − A","A ∪ B","∅"],0,"A − B is the part of A outside B. Removing that part from A leaves the part of A inside B, which is A ∩ B."],
+  ["S","Which expression describes the elements that are in A or in B, but not in both?",["(A ∪ B) − (A ∩ B)","(A ∩ B)′","A′ ∪ B′","(A ∪ B)′"],0,"Take the union and remove the overlap. (A ∩ B)′ would also include the elements outside both circles."],
+  ["S","If A ⊆ B, which statement is always true?",["A′ ⊆ B′","B′ ⊆ A′","A ∪ B = A","B − A = ∅"],1,"Anything outside B is also outside A, because A sits inside B. This is the set form of the contrapositive."],
+  ["S","Suppose n(U) = 50, n(A) = 20, n(B) = 25, and n(A ∩ B) = 8. What is n((A ∪ B)′)?",["5","13","17","37"],1,"n(A ∪ B) = 20 + 25 − 8 = 37, so n((A ∪ B)′) = 50 − 37 = 13."],
+  ["S","Using the same data, what is n(A ∩ B′)?",["8","12","17","20"],1,"A ∩ B′ = A − B, which has 20 − 8 = 12 elements."],
+  ["S","Which pair of sets is equivalent but NOT equal?",["{1, 2, 3} and {3, 2, 1}","{M, A, T, H} and {10, 20, 30, 40}","{0} and ∅","{a, b} and {a, b, c}"],1,"Both sets have 4 elements, but they contain different elements."],
+  ["S","Let A be the set of days of the week and B = {Heads, Tails}. How many ordered pairs are in A × B?",["9","14","49","128"],1,"n(A × B) = 7 × 2 = 14."],
+  ["S","Which of these sets is finite?",["The set of even integers","The set of fractions between 0 and 1","The set of points on a 2-cm segment","The set of grains of sand on Earth"],3,"There are a huge number of grains of sand, but the number is still a fixed natural number. The other three sets are infinite."],
+  ["S","Which correspondence shows that N = {1, 2, 3, …} is equivalent to W = {0, 1, 2, …}?",["n ↔ n + 1","n ↔ n − 1","n ↔ 2n","n ↔ n²"],1,"1 ↔ 0, 2 ↔ 1, 3 ↔ 2, and so on. Every whole number gets exactly one partner."],
+  ["S","Which of the following equals ℵ₀?",["ℵ₀ + 100","n(R)","n({1, 2, …, 10¹⁰⁰})","n(Q′), the irrational numbers"],0,"Adding finitely many elements to a countably infinite set leaves it countably infinite, as in Hilbert's Hotel."],
+  ["S","Which relation on sets is an equivalence relation (reflexive, symmetric and transitive)?",["is a subset of (⊆)","is a proper subset of (⊂)","has the same number of elements as (~)","has fewer elements than"],2,"Equivalence of sets satisfies all three properties. ⊆ is not symmetric, and ⊂ is not reflexive."],
+  ["S","If n(A) = 6 and n(B) = 9, what is the largest possible value of n(A ∩ B)?",["3","6","9","15"],1,"The overlap cannot be larger than the smaller set. The maximum of 6 happens when A ⊆ B."],
+  ["N","How is the year 2026 written in Roman numerals?",["MMXXVI","MMXXIV","MMXVI","MCMXXVI"],0,"MM = 2000, XX = 20, VI = 6."],
+  ["N","What is 10110₂ in base 10?",["22","20","26","11"],0,"16 + 0 + 4 + 2 + 0 = 22."],
+  ["N","What is 45 written in base 2?",["101101₂","110101₂","101011₂","100111₂"],0,"45 = 32 + 8 + 4 + 1, which gives the digits 1 0 1 1 0 1."],
+  ["N","What is 3F₁₆ in base 10?",["63","48","315","53"],0,"3(16) + 15 = 63."],
+  ["N","Which number is irrational?",["√49","0.121212…","22/7","√50"],3,"50 is not a perfect square, so √50 = 5√2 is irrational. √49 = 7, a repeating decimal is rational, and 22/7 is a fraction (only an approximation of π)."],
+  ["N","In Z₇, what is 5 +₇ 6?",["11","4","5","1"],1,"5 + 6 = 11 = 7 + 4, so the remainder is 4."],
+  ["N","What is the multiplicative inverse of 25 in Z₂₆?",["1","13","25","No inverse exists"],2,"25 × 25 = 625 = 24(26) + 1, so 25 is its own inverse. 25 ≡ −1, and (−1)(−1) = 1."],
+  ["N","The equation 4(10 + 3) = 40 + 12 is justified by which axiom of the real number system?",["Associativity","Commutativity","Distributivity of multiplication over addition","Existence of the additive identity"],2,"4 is multiplied into each term in the parentheses: a(b + c) = ab + ac."],
+  ["N","With F₁ = F₂ = 1, what is F₁₂, the 12th Fibonacci number?",["89","121","144","233"],2,"The sequence is 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144."],
+  ["N","The ratio F₁₃ / F₁₂ = 233/144 is approximately equal to:",["1.414","1.618","2.718","3.142"],1,"Ratios of consecutive Fibonacci numbers approach the golden ratio φ ≈ 1.618."],
+  ["N","What is the angle of rotation of a regular octagon?",["30°","40°","45°","60°"],2,"360° ÷ 8 = 45°."],
+  ["N","Which capital letter has BOTH a horizontal and a vertical line of symmetry?",["X","A","E","N"],0,"X can be folded both left-to-right and top-to-bottom. A has only a vertical line, E only a horizontal one, and N has none."]
+ ],
+ ps: [
+  {type:"crypt", title:"Decryption", a:5, b:8, cipher:"RMCMZAVMZ"},
+  {type:"html", title:"Three-set survey", prompt:`<p>The barangay health office surveyed <b>150</b> residents about which services they used in the past year: the barangay health center (B), a private clinic (P), and a hospital (H).</p>
+<table class="mini"><tr><td>n(B) = 78</td><td>n(P) = 52</td><td>n(H) = 45</td></tr><tr><td>n(B ∩ P) = 20</td><td>n(B ∩ H) = 18</td><td>n(P ∩ H) = 12</td></tr><tr><td colspan="3">n(B ∩ P ∩ H) = 7</td></tr></table>
+<p>Draw the Venn diagram with all eight regions filled in. Then find how many residents used:</p>
+<ol type="a"><li>the barangay health center only</li><li>exactly two of the services</li><li>at least two of the services</li><li>none of the three</li><li>a private clinic or a hospital, but not the barangay health center</li></ol>`,
+   solution:`<p>Fill the diagram from the center outward.</p>
+<table class="mini"><tr><th>Region</th><th>Work</th><th>Count</th></tr>
+<tr><td>B ∩ P ∩ H</td><td>given</td><td>7</td></tr>
+<tr><td>B and P only</td><td>20 − 7</td><td>13</td></tr>
+<tr><td>B and H only</td><td>18 − 7</td><td>11</td></tr>
+<tr><td>P and H only</td><td>12 − 7</td><td>5</td></tr>
+<tr><td>B only</td><td>78 − 13 − 11 − 7</td><td>47</td></tr>
+<tr><td>P only</td><td>52 − 13 − 5 − 7</td><td>27</td></tr>
+<tr><td>H only</td><td>45 − 11 − 5 − 7</td><td>22</td></tr>
+<tr><td>None</td><td>150 − 132</td><td>18</td></tr></table>
+<p>Check: 78 + 52 + 45 − 20 − 18 − 12 + 7 = 132 residents used at least one service.</p>
+<ol type="a"><li><b>47</b></li><li>13 + 11 + 5 = <b>29</b></li><li>29 + 7 = <b>36</b></li><li><b>18</b></li><li>P only + H only + (P and H only) = 27 + 22 + 5 = <b>54</b></li></ol>
+<p class="rubric">1 pt each for (a) to (e). Deduct 1 if the diagram is missing.</p>`},
+  {type:"html", title:"Validity by truth table", prompt:`<p>Use a truth table to decide whether this argument is valid:</p>
+<p class="argline">p ∨ q<br>p → r<br>q → r<br>∴ r</p>
+<p>Show all rows, mark the rows where every premise is true, and state your conclusion.</p>`,
+   solution:`<table class="mini tt"><tr><th>p</th><th>q</th><th>r</th><th>p ∨ q</th><th>p → r</th><th>q → r</th><th>r</th></tr>
+<tr class="hit"><td>T</td><td>T</td><td>T</td><td>T</td><td>T</td><td>T</td><td>T</td></tr>
+<tr><td>T</td><td>T</td><td>F</td><td>T</td><td>F</td><td>F</td><td>F</td></tr>
+<tr class="hit"><td>T</td><td>F</td><td>T</td><td>T</td><td>T</td><td>T</td><td>T</td></tr>
+<tr><td>T</td><td>F</td><td>F</td><td>T</td><td>F</td><td>T</td><td>F</td></tr>
+<tr class="hit"><td>F</td><td>T</td><td>T</td><td>T</td><td>T</td><td>T</td><td>T</td></tr>
+<tr><td>F</td><td>T</td><td>F</td><td>T</td><td>T</td><td>F</td><td>F</td></tr>
+<tr><td>F</td><td>F</td><td>T</td><td>F</td><td>T</td><td>T</td><td>T</td></tr>
+<tr><td>F</td><td>F</td><td>F</td><td>F</td><td>T</td><td>T</td><td>F</td></tr></table>
+<p>All three premises are true only in rows 1, 3 and 5, which are highlighted. The conclusion r is true in each of those rows, so the argument is <b>valid</b>.</p>
+<p>Intuition: either p or q happens, and each one leads to r, so r happens either way.</p>
+<p class="rubric">2 pts complete table (8 rows); 1 pt identifying the rows where all premises are true; 2 pts correct conclusion with justification.</p>`}
+ ]
+},
+/* ======================= SET 2 ======================= */
+{
+ id: 2,
+ tf: [
+  ["L","“x + y = y + x for all real numbers x and y” is a mathematical statement.",true,"The quantifier ‘for all real numbers’ removes the free variables, so the sentence has a truth value (true)."],
+  ["L","“This sentence is false.” is a mathematical statement.",false,"If it were true, it would be false, and if it were false, it would be true. It cannot have one definite truth value."],
+  ["L","If q is false, then p → q has the same truth value as ~p.",true,"p → F is true exactly when p is false, which is exactly when ~p is true."],
+  ["L","p ∧ (q ∨ r) is equivalent to (p ∧ q) ∨ (p ∧ r).",true,"This is the distributive law of ∧ over ∨. It mirrors A ∩ (B ∪ C) = (A ∩ B) ∪ (A ∩ C)."],
+  ["L","The negation of “No student was absent” is “All students were absent.”",false,"One absent student is enough to break ‘no student was absent’. The negation is ‘Some students were absent.’"],
+  ["L","The inverse of a true conditional is always false.",false,"‘If x = 2, then x² = 4’ is true, and its inverse ‘If x ≠ 2, then x² ≠ 4’ is false. But for ‘If x is even, then x + 1 is odd’, both the statement and its inverse are true."],
+  ["L","If an argument has a false conclusion, then either some premise is false or the argument is invalid.",true,"A valid argument with all true premises always has a true conclusion. So a false conclusion means one of those two conditions fails."],
+  ["L","The converse of “If n is divisible by 6, then n is divisible by 3” is true.",false,"The converse ‘If n is divisible by 3, then n is divisible by 6’ fails for n = 9."],
+  ["S","{x | x is a month with 32 days} = ∅.",true,"No month has 32 days, so the set has no elements."],
+  ["S","If A = {1, 2, 3}, then {1, 2} ∈ A.",false,"{1, 2} is a subset of A, not an element. The elements of A are only 1, 2 and 3."],
+  ["S","For any set A, A ∩ ∅ = A.",false,"Nothing is in ∅, so nothing can be in both A and ∅. A ∩ ∅ = ∅. (It is A ∪ ∅ that equals A.)"],
+  ["S","(A ∩ B)′ = A′ ∩ B′ for all sets A and B.",false,"De Morgan's law gives (A ∩ B)′ = A′ ∪ B′. Taking the complement switches ∩ to ∪."],
+  ["S","If A ⊆ B and B ⊆ C, then A ⊆ C.",true,"⊆ is transitive. Each element of A is in B, and therefore in C."],
+  ["S","The set of points on a 1-cm line segment has the same cardinality as the set of real numbers.",true,"A segment corresponds to an interval, and every interval is equivalent to R (stretch it, then use a tangent-type map)."],
+  ["S","Removing one element from a countably infinite set leaves a set of cardinality ℵ₀.",true,"For example, N − {1} = {2, 3, 4, …} pairs with N through n ↔ n + 1."],
+  ["N","In Module 5, 0 is a whole number but not a natural number.",true,"N = {1, 2, 3, …}, and W is N together with 0."],
+  ["N","The Babylonian system used 60 different symbols for its 60 digits.",false,"It used only two symbols, a unit and a ten, repeated to build each of the 60 digits."],
+  ["N","Every nonzero element of Z₁₁ has a multiplicative inverse.",true,"11 is prime, so every nonzero a in Z₁₁ has gcd(a, 11) = 1, and therefore has an inverse."],
+  ["N","(1 + i)(1 − i) is a real number.",true,"(1 + i)(1 − i) = 1 − i² = 1 − (−1) = 2."],
+  ["N","In the Fibonacci sequence 1, 1, 2, 3, 5, 8, …, every third term is even.",true,"The sequence goes odd, odd, even, and repeats, because odd + odd = even, odd + even = odd, and even + odd = odd. So F₃, F₆, F₉, … are even."]
+ ],
+ mc: [
+  ["L","Which of the following is an open sentence?",["y − 2 = 9","2 + 2 = 5","Every integer is rational.","Some primes are even."],0,"Its truth depends on the value of y. The other three each have a definite truth value."],
+  ["L","Let p: “I eat breakfast” and q: “I feel energized.” Which is the symbolic form of “I feel energized only if I eat breakfast”?",["p → q","q → p","p ↔ q","~p → ~q"],1,"‘A only if B’ means A → B. Here A is q, so the form is q → p."],
+  ["L","Using the same p and q, which is the symbolic form of “Eating breakfast is sufficient for feeling energized”?",["p → q","q → p","~q → p","p ∧ q"],0,"The sufficient condition is the antecedent: p → q."],
+  ["L","Let p and q be true and r be false. What is the truth value of (p ∧ ~q) ∨ (q ↔ r)?",["True","False","Cannot be determined","It is not a statement"],1,"p ∧ ~q = T ∧ F = F. q ↔ r = T ↔ F = F. So F ∨ F = F.",true],
+  ["L","Let p and q be false and r be true. What is the truth value of (p → q) ∧ (r → ~q)?",["True","False","Cannot be determined","It is not a statement"],0,"p → q = F → F = T. r → ~q = T → T = T. So T ∧ T = T.",true],
+  ["L","Suppose p ∨ q is false and r is true. What is the truth value of (p → r) ∧ (q ↔ r)?",["True","False","Cannot be determined","It is not a statement"],1,"p ∨ q is false, so p and q are both false. p → r = T, but q ↔ r = F ↔ T = F. So T ∧ F = F.",true],
+  ["L","What is the negation of “The patient's temperature is below 38°C”?",["The temperature is above 38°C.","The temperature is at least 38°C.","The temperature is at most 38°C.","The temperature is exactly 38°C."],1,"The negation of < is ≥, so the boundary value 38°C belongs to the negation."],
+  ["L","What is the negation of “Some exams are not difficult”?",["Some exams are difficult.","No exam is difficult.","All exams are difficult.","All exams are not difficult."],2,"To show ‘some are not’ is false, every exam must be difficult."],
+  ["L","What is the negation of “Neither Ana nor Ben came to the review session”?",["Ana came and Ben came.","Ana came or Ben came.","Ana did not come or Ben did not come.","Ana came but Ben did not."],1,"‘Neither… nor’ is ~a ∧ ~b. Its negation is a ∨ b."],
+  ["L","~(p ↔ q) is equivalent to:",["~p ↔ ~q","p ↔ ~q","~p ∧ ~q","p → ~q"],1,"A biconditional is false exactly when p and q differ, which is exactly when p ↔ ~q is true. ~p ↔ ~q is equivalent to p ↔ q itself."],
+  ["L","What is the contrapositive of “If x² = 4, then x = 2”?",["If x = 2, then x² = 4.","If x² ≠ 4, then x ≠ 2.","If x ≠ 2, then x² ≠ 4.","x² = 4 and x ≠ 2."],2,"Swap the parts and negate both. (Both the original and its contrapositive are false, since x = −2 is a counterexample.)"],
+  ["L","Suppose p → q is true and q is false. What is the truth value of p?",["True","False","Cannot be determined","Both true and false"],1,"If p were true, p → q would be T → F = F. So p must be false (modus tollens).",true],
+  ["L","Which statement is equivalent to “Not all doctors are surgeons”?",["No doctor is a surgeon.","Some doctors are not surgeons.","All doctors are not surgeons.","Some surgeons are not doctors."],1,"‘Not all A are B’ means at least one A is not B."],
+  ["L","Which statement follows from “No smoker is healthy”?",["If you are not a smoker, then you are healthy.","If you are healthy, then you are not a smoker.","Some healthy people are smokers.","All unhealthy people are smokers."],1,"smoker → not healthy has the contrapositive healthy → not smoker. The first option is the inverse and does not follow."],
+  ["L","Which statement is a tautology?",["(p → q) ∨ (q → p)","(p → q) ∧ (q → p)","p → (p ∧ q)","(p ∨ q) → p"],0,"If p → q is false, then p is T and q is F, which makes q → p true. So at least one side is always true."],
+  ["L","How many rows does the truth table for a compound statement with 7 simple statements have?",["14","49","64","128"],3,"2⁷ = 128."],
+  ["L","“If it is a weekend, the clinic is closed. The clinic is closed. Therefore, it is a weekend.” This argument is:",["Valid by modus ponens","Valid by modus tollens","Invalid: fallacy of the converse","Invalid: fallacy of the inverse"],2,"It affirms the consequent. The clinic could be closed on a holiday."],
+  ["L","“If you have a fever, you should rest. You have a fever. So you should rest.” This argument is an example of:",["Modus ponens","Modus tollens","Syllogism","Fallacy of the converse"],0,"It has the form p → q, p ∴ q."],
+  ["L","“No reptile has fur. Some pets have fur. Therefore, some pets are not reptiles.” This argument is:",["Valid","Invalid"],0,"The furry pets lie in the fur circle, which is disjoint from the reptile circle. So those pets are not reptiles.",true],
+  ["L","“No one who is punctual gets scolded. All nursing students are punctual. Lea got scolded.” Which conclusion is valid?",["Lea is a nursing student.","Lea is punctual.","Lea is not a nursing student.","No conclusion follows."],2,"The chain is nursing student → punctual → not scolded. Lea was scolded, so by modus tollens twice she is not a nursing student."],
+  ["S","If A = {x | x is a letter in the word ANATOMY}, what is n(A)?",["5","6","7","8"],1,"The distinct letters are A, N, T, O, M and Y."],
+  ["S","Which of these sets is empty?",["{x | x² = 4}","{0}","{x | x is an even prime greater than 2}","{∅}"],2,"2 is the only even prime. {0} and {∅} each have one element, and {x | x² = 4} = {−2, 2}."],
+  ["S","If A = {a, b, c, d}, how many subsets of A have exactly 2 elements?",["4","6","8","16"],1,"The subsets are {a,b}, {a,c}, {a,d}, {b,c}, {b,d} and {c,d}."],
+  ["S","Let A = {1, 2, {3}}. Which statement is TRUE?",["3 ∈ A","{3} ⊆ A","{3} ∈ A","n(A) = 4"],2,"{3} is listed as an element. The number 3 alone is not an element of A, so {3} is not a subset of A, and n(A) = 3."],
+  ["S","Let U = {a, b, c, d, e, f, g}, A = {a, b, c, d}, and B = {c, d, e}. What is A′?",["{e, f, g}","{a, b}","{f, g}","{c, d}"],0,"These are the elements of U that are not in A."],
+  ["S","Using the same U, A and B, what is A ∪ B′?",["{a, b, f, g}","{a, b, c, d, f, g}","{c, d}","{a, b, c, d, e}"],1,"B′ = {a, b, f, g}. Its union with A is {a, b, c, d, f, g}."],
+  ["S","Using the same A and B, what is (A − B) ∪ (B − A)?",["{c, d}","{a, b}","{a, b, e}","{a, b, c, d, e}"],2,"A − B = {a, b} and B − A = {e}."],
+  ["S","Which expression is NOT always equal to A′ ∩ B′?",["(A ∪ B)′","U − (A ∪ B)","(A ∩ B)′","B′ − A"],2,"(A ∩ B)′ = A′ ∪ B′, which is larger in general. B′ − A = B′ ∩ A′, so that option is equal."],
+  ["S","What does A ∪ (A ∩ B) simplify to?",["A","B","A ∩ B","A ∪ B"],0,"A ∩ B is already inside A, so adding it to A changes nothing (absorption law)."],
+  ["S","If A ∩ B = ∅, then A − B equals:",["∅","B","A","A ∪ B"],2,"No element of A is in B, so removing B's elements from A removes nothing."],
+  ["S","If n(A) = 30, n(B) = 22, and n(A ∪ B) = 40, what is n(B − A)?",["8","10","12","18"],1,"n(A ∩ B) = 30 + 22 − 40 = 12, so n(B − A) = 22 − 12 = 10."],
+  ["S","Of 60 students, 35 watch K-dramas, 28 watch anime, and 9 watch neither. How many watch both?",["3","9","12","17"],2,"60 − 9 = 51 watch at least one. Both = 35 + 28 − 51 = 12."],
+  ["S","Using the same survey, how many students watch exactly one of the two?",["39","51","23","16"],0,"At least one (51) minus both (12) = 39. Equivalently, 23 watch K-dramas only and 16 watch anime only."],
+  ["S","If n(A × B) = 24 and n(A) = n(B) + 2, what is n(A)?",["4","6","8","12"],1,"n(B)(n(B) + 2) = 24 gives n(B) = 4, so n(A) = 6."],
+  ["S","Let A = {1, 2} and B = {2, 3}. How many ordered pairs (x, y) in A × B satisfy x < y?",["2","3","4","1"],1,"The pairs are (1, 2), (1, 3) and (2, 3). The pair (2, 2) fails."],
+  ["S","Which set is uncountable?",["Z","Q","{x ∈ R | 2 < x < 3}","The set of multiples of 1,000"],2,"Any interval of real numbers is uncountable. The other three can be listed."],
+  ["S","Which correspondence pairs N = {1, 2, 3, …} one-to-one with the negative integers Z⁻?",["n ↔ −n","n ↔ n − 1","n ↔ −2n","n ↔ 1/n"],0,"1 ↔ −1, 2 ↔ −2, and so on. The rule n ↔ −2n misses the odd negative numbers."],
+  ["S","By definition, a set A is infinite if and only if:",["A has more than a million elements.","A is equivalent to a proper subset of itself.","A contains the empty set.","A is a subset of R."],1,"This is the definition from Module 4. No finite set is equivalent to a proper subset of itself."],
+  ["N","What is the value of the Roman numeral CDXLIV?",["444","464","644","1,444"],0,"CD = 400, XL = 40, IV = 4."],
+  ["N","What is 777₈ in base 10?",["511","777","448","343"],0,"7(64) + 7(8) + 7 = 448 + 56 + 7 = 511."],
+  ["N","What is 100 (base 10) written in base 16?",["46₁₆","64₁₆","6A₁₆","A0₁₆"],1,"100 = 6(16) + 4."],
+  ["N","Which civilization's numeration system used arrangements of small bamboo rods for the digits 1 to 9?",["Egyptian","Babylonian","Chinese","Roman"],2,"Chinese rod numerals were placed in units, tens, hundreds and so on, much like our decimal system."],
+  ["N","Which number is rational?",["0.101001000100001…","π","√3","0.272727…"],3,"A repeating decimal is rational: 0.2727… = 27/99 = 3/11. The first option never repeats a block."],
+  ["N","In Z₉, what is 7 ·₉ 8?",["56","2","1","8"],1,"56 = 6(9) + 2."],
+  ["N","Which element of Z₁₂ has NO multiplicative inverse?",["5","7","9","11"],2,"gcd(9, 12) = 3 ≠ 1. Each of 5, 7 and 11 is its own inverse in Z₁₂, for example 5 · 5 = 25 ≡ 1."],
+  ["N","What is the additive inverse of 8 in Z₁₃?",["−8","5","8","13"],1,"8 + 5 = 13 ≡ 0, and the answer must be an element of Z₁₃."],
+  ["N","Which axiom of the real number system does Z₁₀, with its modular operations, fail to satisfy?",["Closure","Commutativity","Existence of an additive identity","Existence of multiplicative inverses for every nonzero element"],3,"Module 5 says Zₙ satisfies every axiom except the last. In Z₁₀, the elements 2, 4, 5, 6 and 8 have no inverse."],
+  ["N","Today is Monday. What day of the week will it be 100 days from today?",["Tuesday","Wednesday","Thursday","Saturday"],1,"100 = 14(7) + 2, so 100 ≡ 2 (mod 7). Two days after Monday is Wednesday."],
+  ["N","What is F₁ + F₂ + … + F₁₀, the sum of the first ten Fibonacci numbers?",["89","142","143","144"],2,"1 + 1 + 2 + 3 + 5 + 8 + 13 + 21 + 34 + 55 = 143, which equals F₁₂ − 1."],
+  ["N","A figure has rotational symmetry with an angle of rotation of 40°. What is its order of rotation?",["4","8","9","40"],2,"Order = 360° ÷ 40° = 9."]
+ ],
+ ps: [
+  {type:"crypt", title:"Decryption", a:9, b:2, cipher:"PVEFVUKFZV"},
+  {type:"html", title:"Chain of conditionals", prompt:`<p>Consider these premises:</p>
+<ol><li>Every student who reviews early feels confident.</li><li>No one who feels confident panics during exams.</li><li>Everyone who skips breakfast panics during exams.</li><li>Rico reviews early.</li></ol>
+<ol type="a"><li>Write premises 1–3 as conditionals using r (reviews early), c (feels confident), p (panics) and s (skips breakfast).</li><li>Use contrapositives and syllogism to link them into one chain.</li><li>State a valid general conclusion and a valid conclusion about Rico. Name the argument forms you used.</li></ol>`,
+   solution:`<ol type="a"><li>(1) r → c &nbsp; (2) c → ~p &nbsp; (3) s → p</li>
+<li>Premise 3 has the contrapositive ~p → ~s. The chain is <b>r → c → ~p → ~s</b>.</li>
+<li>General conclusion: <b>No student who reviews early skips breakfast</b> (r → ~s, by syllogism).<br>About Rico: he reviews early, so by modus ponens <b>Rico does not skip breakfast</b>. Along the way, he feels confident and does not panic.</li></ol>
+<p>Common error: concluding ‘Everyone who eats breakfast reviews early.’ That is the converse of the contrapositive and does not follow.</p>
+<p class="rubric">1 pt for the three conditionals; 2 pts for a correct chain that uses the contrapositive; 2 pts for valid conclusions with the forms named.</p>`},
+  {type:"html", title:"Interval correspondence", prompt:`<ol type="a"><li>Find a linear function f that gives a one-to-one correspondence from the interval (0, 1) onto the interval (3, 8).</li><li>Show that your f is one-to-one and onto.</li><li>What does this, together with the results of Module 4, tell you about the cardinality of (3, 8)?</li></ol>`,
+   solution:`<ol type="a"><li>Stretch by the length 8 − 3 = 5, then shift by 3: <b>f(x) = 5x + 3</b>. As x goes from 0 to 1, f(x) goes from 3 to 8.</li>
+<li><i>One-to-one:</i> if 5a + 3 = 5b + 3, then a = b.<br><i>Onto:</i> for any y in (3, 8), take x = (y − 3)/5. Since 0 &lt; y − 3 &lt; 5, x is in (0, 1), and f(x) = y.</li>
+<li>(3, 8) ~ (0, 1), and Module 4 shows (0, 1) ~ R. So <b>n((3, 8)) = n(R)</b>. The interval is uncountable, and its cardinality is larger than ℵ₀.</li></ol>
+<p class="rubric">2 pts for f; 2 pts for showing one-to-one and onto; 1 pt for the cardinality conclusion.</p>`}
+ ]
+},
+/* ======================= SET 3 ======================= */
+{
+ id: 3,
+ tf: [
+  ["L","“Some triangles have two right angles.” is a mathematical statement.",true,"It is a declarative sentence with a definite truth value. It happens to be false, but it is still a statement."],
+  ["L","If p is true and q is false, then q → p is true.",true,"F → T is true. Only T → F is false."],
+  ["L","p → (q → r) is equivalent to (p ∧ q) → r.",true,"Both are false only when p and q are true and r is false. Their truth tables match."],
+  ["L","p ↔ q is equivalent to (p ∧ q) ∨ (~p ∧ ~q).",true,"A biconditional is true when both are true or both are false, which is exactly what the right side says."],
+  ["L","The negation of “Juan is at least 160 cm tall and weighs at most 60 kg” is “Juan is shorter than 160 cm or weighs more than 60 kg.”",true,"De Morgan changes ‘and’ to ‘or’, at least becomes less than, and at most becomes more than."],
+  ["L","“Some A are B” and “Some A are not B” cannot both be true.",false,"‘Some students are athletes’ and ‘Some students are not athletes’ are both true. These two are not negations of each other."],
+  ["L","Modus tollens is an example of inductive reasoning.",false,"Modus tollens is a valid deductive form: p → q, ~q ∴ ~p. Its conclusion is guaranteed, not just likely."],
+  ["L","(p ∨ q) → p is a tautology.",false,"When p is false and q is true, the statement is T → F, which is false."],
+  ["S","{1, 2, 3} = {x | x is a natural number less than 4}.",true,"The natural numbers less than 4 are 1, 2 and 3. In this course 0 is not in N."],
+  ["S","If n(A) = 0, then A = ∅.",true,"The only set with no elements is the empty set."],
+  ["S","For any set A, A × ∅ = ∅.",true,"An ordered pair needs a second coordinate from ∅, and there is none. Also n(A) · 0 = 0."],
+  ["S","If A′ = B′, then A = B.",true,"A = (A′)′ = (B′)′ = B."],
+  ["S","If A, B and C are pairwise disjoint, then n(A ∪ B ∪ C) = n(A) + n(B) + n(C).",true,"All the overlap terms in the three-set formula are 0."],
+  ["S","The set of rational numbers between 0 and 1 is uncountable.",false,"It is a subset of Q, which is countable, so it is countable too."],
+  ["S","A set with 10 elements has 1,000 subsets.",false,"It has 2¹⁰ = 1,024 subsets."],
+  ["N","Every natural number greater than 1 is either prime or composite.",true,"Such a number either has factors other than 1 and itself (composite) or it doesn't (prime). Only 1 is neither."],
+  ["N","3.14 is irrational because it approximates π.",false,"3.14 is a terminating decimal, so it is rational: 3.14 = 314/100. Only π itself is irrational."],
+  ["N","In Z₅, 3 is its own multiplicative inverse.",false,"3 · 3 = 9 ≡ 4 (mod 5). The inverse of 3 is 2, since 3 · 2 = 6 ≡ 1."],
+  ["N","The hexadecimal system uses the letters A to F for the values 10 to 15.",true,"A = 10, B = 11, C = 12, D = 13, E = 14, F = 15."],
+  ["N","A circle has infinitely many lines of symmetry.",true,"Every line through the center divides a circle into two mirror-image halves."]
+ ],
+ mc: [
+  ["L","Which of the following is a mathematical statement?",["Solve 2x = 10.","x > 4","The square of any real number is negative.","What an elegant proof!"],2,"It is declarative and false. The others are a command, an open sentence and an exclamation."],
+  ["L","Let p: “It is sunny” and q: “We go to Luneta.” Which is the symbolic form of “We go to Luneta if and only if it is sunny”?",["p ↔ q","p → q","q → p","p ∧ q"],0,"‘If and only if’ is the biconditional. q ↔ p is the same as p ↔ q."],
+  ["L","Let p: “Maria studies” and q: “Maria passes.” Which sentence translates ~p ∨ q?",["Maria does not study or Maria passes.","Maria does not study and Maria passes.","If Maria passes, then she studies.","Maria does not study or does not pass."],0,"Read the symbols directly. (This sentence is also equivalent to ‘If Maria studies, then she passes.’)"],
+  ["L","Let p and r be true and q be false. What is the truth value of ~(p ∧ r) ↔ q?",["True","False","Cannot be determined","It is not a statement"],0,"p ∧ r = T, so ~(p ∧ r) = F. Then F ↔ q = F ↔ F = T.",true],
+  ["L","Let p and q be true and r be false. What is the truth value of (p ∨ ~r) → (q ∧ r)?",["True","False","Cannot be determined","It is not a statement"],1,"p ∨ ~r = T. q ∧ r = F. So T → F = F.",true],
+  ["L","Suppose (p ∧ q) → r is false. What are the truth values of p, q and r?",["p T, q T, r F","p F, q F, r T","p T, q F, r F","They cannot be determined."],0,"A conditional is false only when the antecedent is true and the consequent is false. So p ∧ q is true and r is false."],
+  ["L","What is the negation of “There are fewer than 5 dengue cases in the barangay”?",["There are more than 5 dengue cases in the barangay.","There are at least 5 dengue cases in the barangay.","There are at most 5 dengue cases in the barangay.","There are no dengue cases in the barangay."],1,"The negation of < 5 is ≥ 5."],
+  ["L","What is the negation of “All jeepneys on this route are air-conditioned and some drivers are friendly”?",["No jeepney on this route is air-conditioned and no driver is friendly.","Some jeepneys on this route are not air-conditioned or no driver is friendly.","Some jeepneys on this route are not air-conditioned and some drivers are not friendly.","All jeepneys on this route are not air-conditioned or all drivers are unfriendly."],1,"Change ‘and’ to ‘or’ (De Morgan). ‘All are’ becomes ‘some are not’, and ‘some are’ becomes ‘none are’."],
+  ["L","~(p → ~q) is equivalent to:",["p ∧ q","~p ∧ ~q","p ∨ q","~p → q"],0,"~(a → b) ≡ a ∧ ~b. With a = p and b = ~q, this gives p ∧ ~~q = p ∧ q."],
+  ["L","~(~p ∧ q) is equivalent to:",["p ∧ ~q","p ∨ ~q","~p ∨ q","p ∨ q"],1,"De Morgan gives ~~p ∨ ~q = p ∨ ~q."],
+  ["L","What is the inverse of “If you are vaccinated, then you are protected”?",["If you are protected, then you are vaccinated.","If you are not vaccinated, then you are not protected.","If you are not protected, then you are not vaccinated.","You are vaccinated and not protected."],1,"The inverse negates both parts: ~p → ~q."],
+  ["L","What is the contrapositive of “The plant grows only if it is watered”?",["If the plant is watered, then it grows.","If the plant does not grow, then it is not watered.","If the plant is not watered, then it does not grow.","The plant grows and it is not watered."],2,"The statement is grows → watered, so its contrapositive is not watered → does not grow."],
+  ["L","Consider “If a quadrilateral is a square, then it is a rhombus.” Which of the following is TRUE?",["Its converse is true.","Its inverse is true.","Its contrapositive is true.","Its negation is true."],2,"The statement is true, so its contrapositive is true. The converse and inverse fail because some rhombuses are not squares."],
+  ["L","Which statement is equivalent to “Some UP students are not athletes”?",["No UP student is an athlete.","Not all UP students are athletes.","All UP students are not athletes.","Some athletes are not UP students."],1,"‘Some A are not B’ means the same as ‘Not all A are B’."],
+  ["L","If p → q is false, which of the following is TRUE?",["q is true.","~q → ~p is true.","p ↔ q is true.","q → p is true."],3,"p must be T and q must be F. Then q → p = F → T = T, while ~q → ~p = T → F = F."],
+  ["L","Which statement is NOT equivalent to p → q?",["~q → ~p","~p ∨ q","~(p ∧ ~q)","q → p"],3,"q → p is the converse. The other three are equivalent forms of the conditional."],
+  ["L","“If a number ends in 5, then it is divisible by 5. 35 is divisible by 5. Therefore, 35 ends in 5.” This argument is:",["Valid, because the conclusion is true","Valid by modus ponens","Invalid: fallacy of the converse","Invalid: fallacy of the inverse"],2,"It affirms the consequent. The conclusion happens to be true, but the form is invalid. The same form would ‘prove’ that 40 ends in 5."],
+  ["L","“If I join the debate club, I attend its workshops. If I attend its workshops, I improve my speaking. I joined the debate club.” Which conclusion is valid?",["I improve my speaking.","I do not attend the workshops.","Everyone who improves their speaking joined the club.","No conclusion follows."],0,"Syllogism gives joined → improve, and modus ponens then gives ‘I improve my speaking.’"],
+  ["L","“Some lawyers are writers. No writer is lazy. Therefore, some lawyers are not lazy.” This argument is:",["Valid","Invalid"],0,"The lawyers who are writers lie in the writer circle, which is disjoint from the lazy circle. So those lawyers are not lazy.",true],
+  ["L","One of Dina, Eli and Fe always tells the truth, one always lies, and one answers randomly. Dina says, “I am the liar.” Eli says, “Dina is the random one.” Who is the liar?",["Dina","Eli","Fe","Cannot be determined"],2,"Neither the truth-teller nor the liar can say ‘I am the liar’, so Dina is the random one. Eli's statement is then true, so Eli is the truth-teller. That leaves Fe as the liar."],
+  ["S","Which collection is a well-defined set?",["The most delicious Filipino fruits","The smartest students in UP Manila","The Philippine provinces whose names begin with Q","The best OPM songs of 2025"],2,"Membership can be checked objectively: Quezon and Quirino. The other options depend on opinion."],
+  ["S","What is n({x | x ∈ Z, −3 ≤ x < 4})?",["6","7","8","4"],1,"The elements are −3, −2, −1, 0, 1, 2 and 3."],
+  ["S","What is the power set of A = {p, q}?",["{{p}, {q}}","{∅, {p}, {q}, {p, q}}","{∅, p, q}","{{p}, {q}, {p, q}}"],1,"A power set contains every subset, including ∅ and A itself, for 2² = 4 subsets."],
+  ["S","Set A has 2 more elements than set B. How many times as many subsets does A have as B?",["2","4","8","It depends on n(B)."],1,"2ⁿ⁺² ÷ 2ⁿ = 2² = 4."],
+  ["S","Let U = {1, 2, …, 15}, A = the prime numbers in U, and B = the odd numbers in U. What is A ∩ B′?",["{2}","{1, 9, 15}","{3, 5, 7, 11, 13}","∅"],0,"B′ is the even numbers. The only even prime is 2."],
+  ["S","Using the same U, A and B, what is n(A ∪ B)?",["8","9","14","6"],1,"B has 8 odd numbers, and A adds only 2 that is not already in B. So n(A ∪ B) = 9."],
+  ["S","With the same primes-and-odds sets, list the elements of (A ∪ B)′.",["{4, 6, 8, 10, 12, 14}","{2, 4, 6, 8, 10, 12, 14}","{1, 9, 15}","{4, 6, 8, 9, 10, 12, 14, 15}"],0,"These are the even numbers in U other than 2."],
+  ["S","(A′ ∪ B)′ is equal to:",["A ∩ B′","A′ ∩ B","A ∪ B′","(A ∩ B)′"],0,"De Morgan gives (A′)′ ∩ B′ = A ∩ B′, which is A − B."],
+  ["S","Which statement is true for ALL sets A and B?",["A ∪ B ⊆ A ∩ B","A − B ⊆ B","A ∩ B ⊆ A ∪ B","A′ ⊆ A"],2,"Anything in both sets is certainly in at least one of them."],
+  ["S","A ∩ (B ∪ C) equals:",["(A ∩ B) ∪ (A ∩ C)","(A ∪ B) ∩ (A ∪ C)","(A ∩ B) ∪ C","A ∪ (B ∩ C)"],0,"This is the distributive law, the set version of p ∧ (q ∨ r) ≡ (p ∧ q) ∨ (p ∧ r)."],
+  ["S","100 respondents were asked which apps they use. n(F) = 45, n(T) = 50, n(I) = 40, n(F ∩ T) = 20, n(F ∩ I) = 15, n(T ∩ I) = 18, n(F ∩ T ∩ I) = 8. How many use none of the three?",["0","8","10","18"],2,"n(F ∪ T ∪ I) = 45 + 50 + 40 − 20 − 15 − 18 + 8 = 90, so 100 − 90 = 10 use none."],
+  ["S","Using the same survey, how many use TikTok only?",["20","22","30","12"],0,"F ∩ T only = 12 and T ∩ I only = 10. T only = 50 − 12 − 10 − 8 = 20."],
+  ["S","In a class, every student takes Math or Biology. 40 take Math, 30 take Biology, and 15 take both. How many students are in the class?",["70","55","45","85"],1,"40 + 30 − 15 = 55. No one is outside both sets."],
+  ["S","If n(A) = 8, n(A ∩ B) = 3, and n(B − A) = 5, what is n(A ∪ B)?",["11","13","16","8"],1,"A ∪ B is A together with B − A, and these don't overlap: 8 + 5 = 13."],
+  ["S","Let A = {1, 2, 3} and B = {x, y}. How many subsets of A × B contain exactly one ordered pair?",["2","5","6","64"],2,"A × B has 3 × 2 = 6 pairs, and each one forms a one-element subset."],
+  ["S","Which set is equivalent to N?",["{1, 2, …, 1000}","The set of integers greater than 1,000","The interval (0, 1)","The set of irrational numbers"],1,"The rule n ↔ n + 1000 pairs N with {1001, 1002, …} perfectly."],
+  ["S","In Cantor's diagonal argument, the list begins r₁ = 0.5555…, r₂ = 0.1234…, r₃ = 0.9081…. Using the rule “if the digit is 5, write 4; otherwise write 5”, what are the first three digits of r?",["0.455…","0.544…","0.545…","0.454…"],0,"The diagonal digits are 5, 2 and 8, which become 4, 5 and 5."],
+  ["S","Which statement about cardinality is TRUE?",["n(N) < n(Z)","n(Z) < n(Q)","n(Q) < n(R)","n((0, 1)) < n(R)"],2,"Q is countable and R is not. The other pairs have equal cardinalities."],
+  ["N","What is the value of the Roman numeral MCMLXXXVI?",["1986","2186","1966","1886"],0,"M = 1000, CM = 900, L = 50, XXX = 30, VI = 6."],
+  ["N","What is 2026 written in base 2?",["11111101010₂","11111101100₂","11111011010₂","10111101010₂"],0,"1024 + 512 + 256 + 128 + 64 + 32 + 8 + 2 = 2026."],
+  ["N","What is 52₈ in base 10?",["42","52","40","47"],0,"5(8) + 2 = 42."],
+  ["N","What is 171 (base 10) written in base 16?",["AB₁₆","BA₁₆","A11₁₆","10B₁₆"],0,"171 = 10(16) + 11, and the digits 10 and 11 are written A and B."],
+  ["N","Which natural number is neither prime nor composite?",["0","1","2","9"],1,"Module 5 says 1 is neither. 2 is prime, 9 is composite, and 0 is not a natural number in this course."],
+  ["N","Under Module 5's definition, which number is an imaginary number?",["5i","√5","−5","i²"],0,"An imaginary number is a real multiple of i. Note that i² = −1 is real."],
+  ["N","What is (2 + 3i) + (4 − 3i)?",["6, a real number","6 + 6i","8 − 9i","6i"],0,"The imaginary parts cancel: (2 + 4) + (3 − 3)i = 6."],
+  ["N","Which equation can NOT be used as an encryption key y = ax + b in Z₂₆?",["y = 3x + 1","y = 5x + 2","y = 13x + 5","y = 25x + 4"],2,"gcd(13, 26) = 13, so 13 has no multiplicative inverse and messages could not be decoded. (For example, A and C both encrypt to R.)"],
+  ["N","In Z₆, what is 4 ·₆ 4?",["2","4","16","0"],1,"16 = 2(6) + 4."],
+  ["N","A 12-hour clock shows 7:00. What will it show 1,000 hours later?",["7:00","9:00","11:00","3:00"],2,"1000 = 83(12) + 4, so 1000 ≡ 4 (mod 12), and 7 + 4 = 11."],
+  ["N","Which ratio of consecutive Fibonacci numbers is closest to the golden ratio φ ≈ 1.6180?",["8/5","13/8","21/13","89/55"],3,"89/55 ≈ 1.6182, compared with 1.6, 1.625 and 1.6154. The ratios get closer to φ as the numbers grow."],
+  ["N","Which of these shows translational symmetry?",["A single starfish","A snowflake","A border of identical tiles repeated along a hallway","A butterfly"],2,"Shifting the border by one tile reproduces the pattern. The other three show reflectional or rotational symmetry about a single figure."]
+ ],
+ ps: [
+  {type:"crypt", title:"Decryption", a:15, b:4, cipher:"MSBGCGESF"},
+  {type:"html", title:"From decryption key to encryption", prompt:`<p>A friend gives you only the <b>decryption</b> key <b>x = 3y + 10 (mod 26)</b>, with A = 1, …, Y = 25, Z = 0.</p>
+<ol type="a"><li>Find the encryption equation y = ax + b. Reduce a and b to elements of Z₂₆.</li><li>Use it to encrypt the word <b>LUNAS</b>.</li><li>Check your answer by decrypting the first letter of your ciphertext.</li></ol>`,
+   solution:`<ol type="a"><li>Solve x = 3y + 10 for y. First, x − 10 = 3y. The inverse of 3 is 9, since 3 · 9 = 27 ≡ 1. So y = 9(x − 10) = 9x − 90. Since −90 + 104 = 14, this gives <b>y = 9x + 14 (mod 26)</b>.</li>
+<li><table class="mini"><tr><th>Plain</th><th>x</th><th>9x + 14</th><th>mod 26</th><th>Cipher</th></tr>
+<tr><td>L</td><td>12</td><td>122</td><td>18</td><td>R</td></tr>
+<tr><td>U</td><td>21</td><td>203</td><td>21</td><td>U</td></tr>
+<tr><td>N</td><td>14</td><td>140</td><td>10</td><td>J</td></tr>
+<tr><td>A</td><td>1</td><td>23</td><td>23</td><td>W</td></tr>
+<tr><td>S</td><td>19</td><td>185</td><td>3</td><td>C</td></tr></table>
+Ciphertext: <b>RUJWC</b></li>
+<li>R = 18, and 3(18) + 10 = 64 = 2(26) + 12, which is L. ✓</li></ol>
+<p class="rubric">2 pts for the encryption equation; 2 pts for the ciphertext; 1 pt for the check.</p>`},
+  {type:"html", title:"Prove or disprove", prompt:`<p>For each identity, decide whether it holds for all sets A, B and C. If it holds, justify it with a Venn diagram or an element argument. If it does not, give a specific counterexample.</p>
+<ol type="a"><li>A − (B ∪ C) = (A − B) ∩ (A − C)</li><li>A ∪ (B − C) = (A ∪ B) − C</li></ol>`,
+   solution:`<ol type="a"><li><b>True.</b> x ∈ A − (B ∪ C) means x ∈ A, x ∉ B and x ∉ C. That is the same as (x ∈ A and x ∉ B) and (x ∈ A and x ∉ C), which says x ∈ (A − B) ∩ (A − C). In a Venn diagram, both sides shade the single region ‘A only’. (This is De Morgan's law in disguise: A ∩ (B ∪ C)′ = A ∩ B′ ∩ C′.)</li>
+<li><b>False.</b> Counterexample: A = {1}, B = ∅, C = {1}.<br>Left side: B − C = ∅, so A ∪ ∅ = {1}.<br>Right side: A ∪ B = {1}, and {1} − {1} = ∅.<br>Since {1} ≠ ∅, the identity fails. The left side keeps the elements of A that are in C, but the right side removes them.</li></ol>
+<p class="rubric">(a) 1 pt for the verdict and 2 pts for the justification. (b) 1 pt for the verdict and 1 pt for a working counterexample.</p>`}
+ ]
+}
+];
+if (typeof module !== "undefined") module.exports = SETS;
+
+</script>
+<script>
+(function(){
+const TOPIC={L:"Logic & Reasoning",S:"Sets",N:"Numbers & Patterns"};
+const KEY="m10drills:v1";
+let st;
+try{st=JSON.parse(localStorage.getItem(KEY))}catch(e){st=null}
+if(!st||typeof st!=="object")st={};
+st.set=st.set||1; st.mode=st.mode||"practice"; st.data=st.data||{}; st.hideRight=!!st.hideRight;
+const fromHash=(location.hash||"").match(/^#set([123])$/); if(fromHash)st.set=+fromHash[1];
+function save(){try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}}
+function D(id){if(!st.data[id])st.data[id]={tf:{},mc:{},ps:{},checked:false};return st.data[id]}
+
+function rng(seed){return function(){seed=(seed*1664525+1013904223)>>>0;return seed/4294967296}}
+function order(setId,i,n,keep){const a=[...Array(n).keys()];if(keep)return a;const r=rng(setId*7919+i*104729+13);for(let k=n-1;k>0;k--){const j=Math.floor(r()*(k+1));[a[k],a[j]]=[a[j],a[k]]}return a}
+const L=c=>{const n=c.charCodeAt(0)-64;return n===26?0:n}, C=n=>n===0?"Z":String.fromCharCode(64+n), m=x=>((x%26)+26)%26;
+const inv=a=>{for(let i=1;i<26;i++)if(m(a*i)===1)return i};
+function el(tag,cls,txt){const e=document.createElement(tag);if(cls)e.className=cls;if(txt!=null)e.textContent=txt;return e}
+
+function cryptProblem(p){
+  const ai=inv(p.a), prod=p.a*ai, k=(prod-1)/26, c=m(-ai*p.b);
+  const prompt=`<p>The message below was encrypted in Z₂₆ with <b>y = ${p.a}x + ${p.b}</b>, where A = 1, …, Y = 25, Z = 0.</p>
+  <div class="cipher" aria-label="Ciphertext ${p.cipher}">${[...p.cipher].map(ch=>`<span>${ch}</span>`).join("")}</div>
+  <ol type="a"><li>Find the multiplicative inverse of ${p.a} in Z₂₆ and show that it works.</li><li>Write the decryption equation.</li><li>Decrypt the message and check one letter by re-encrypting it.</li></ol>`;
+  let rows="",plain="";
+  for(const ch of p.cipher){const y=L(ch),d=y-p.b,t=ai*d,x=m(t);plain+=C(x);rows+=`<tr><td>${ch}</td><td>${y}</td><td>${d}</td><td>${t}</td><td>${x}</td><td><b>${C(x)}</b></td></tr>`}
+  const f=plain[0], fx=L(f), back=p.a*fx+p.b;
+  const sol=`<ol type="a"><li>${p.a} · ${ai} = ${prod} = ${k}(26) + 1, so <b>${p.a}⁻¹ = ${ai}</b>.</li>
+  <li>x = ${ai}(y − ${p.b}). This simplifies to <b>x ≡ ${ai}y + ${c} (mod 26)</b>.</li>
+  <li><div class="tblwrap"><table class="mini"><tr><th>Cipher</th><th>y</th><th>y − ${p.b}</th><th>${ai}(y − ${p.b})</th><th>mod 26</th><th>Plain</th></tr>${rows}</table></div>
+  Message: <b>${plain}</b><br>Check: ${f} = ${fx}, and ${p.a}(${fx}) + ${p.b} = ${back} ≡ ${m(back)}, which is ${C(m(back))}. ✓</li></ol>
+  <p class="rubric">1 pt for the inverse with a check; 1 pt for the decryption equation; 2 pts for the computations; 1 pt for the final message. For a negative value, add 26 until the result is in Z₂₆.</p>`;
+  return {prompt,sol};
+}
+
+function renderTabs(){
+  const box=document.getElementById("setTabs");box.innerHTML="";
+  SETS.forEach(s=>{const d=D(s.id);const done=Object.keys(d.tf).length+Object.keys(d.mc).length;
+    const b=el("button","settab");b.type="button";b.setAttribute("role","tab");b.setAttribute("aria-selected",String(s.id===st.set));
+    b.append(el("b",null,"Set "+s.id),el("span",null,done+"/70 answered"+(d.checked?" · checked":"")));
+    b.onclick=()=>{st.set=s.id;save();try{history.replaceState(null,"","#set"+s.id)}catch(e){}render();window.scrollTo({top:0})};
+    box.append(b)});
+}
+
+function isRevealed(d){return st.mode==="practice"||d.checked}
+
+function render(){
+  const s=SETS.find(x=>x.id===st.set), d=D(s.id);
+  renderTabs();
+  document.getElementById("modePractice").setAttribute("aria-pressed",String(st.mode==="practice"));
+  document.getElementById("modeExam").setAttribute("aria-pressed",String(st.mode==="exam"));
+  document.getElementById("checkBtn").hidden=!(st.mode==="exam"&&!d.checked);
+  const main=document.getElementById("main");main.innerHTML="";
+  main.classList.toggle("hide-correct",st.hideRight&&isRevealed(d));
+
+  // Part I
+  const sec1=el("section","part-sec");sec1.id="part-tf";
+  sec1.innerHTML=`<div class="sec-head"><span class="roman">I</span><h2>True or False</h2><p>Items 1–20 · 1 point each. Pick T if the statement is always true, F otherwise.</p></div>`;
+  const ol1=el("ol","items");
+  s.tf.forEach((q,i)=>ol1.append(itemTF(s,d,q,i)));
+  sec1.append(ol1);main.append(sec1);
+
+  // Part II
+  const sec2=el("section","part-sec");sec2.id="part-mc";
+  sec2.innerHTML=`<div class="sec-head"><span class="roman">II</span><h2>Multiple Choice</h2><p>Items 21–70 · 1 point each. Choose the best answer.</p></div>`;
+  const ol2=el("ol","items");
+  s.mc.forEach((q,i)=>ol2.append(itemMC(s,d,q,i)));
+  sec2.append(ol2);main.append(sec2);
+
+  // Part III
+  const sec3=el("section","part-sec");sec3.id="part-ps";
+  sec3.innerHTML=`<div class="sec-head"><span class="roman">III</span><h2>Problem Solving</h2><p>3 problems · 5 points each. Work it out first, then open the solution and score yourself against the rubric.</p></div>`;
+  const wrap=el("div","ps");
+  s.ps.forEach((p,i)=>wrap.append(problem(s,d,p,i)));
+  sec3.append(wrap);main.append(sec3);
+
+  renderScore();
+}
+
+function mark(li,ok){li.classList.toggle("right",ok===true);li.classList.toggle("wrong",ok===false)}
+
+function itemTF(s,d,q,i){
+  const [tp,stem,ans,why]=q, li=el("li","item"), has=i in d.tf, rev=isRevealed(d)&&(has||d.checked);
+  li.id=`s${s.id}-tf-${i+1}`;
+  li.append(el("div","num",String(i+1)));
+  const body=el("div");body.append(el("div","tag",TOPIC[tp]),el("p","stem",stem));
+  const opts=el("div","opts tf");
+  [[true,"T","True"],[false,"F","False"]].forEach(([v,l,t])=>{
+    const b=el("button","bub");b.type="button";const dot=el("span","dot",l);b.append(dot,el("span",null,t));
+    if(has&&d.tf[i]===v)b.classList.add("sel");
+    if(rev){if(v===ans)b.classList.add("is-key");else if(has&&d.tf[i]===v)b.classList.add("is-wrong");b.disabled=true}
+    b.setAttribute("aria-pressed",String(has&&d.tf[i]===v));
+    b.onclick=()=>{d.tf[i]=v;save();refreshItem(li,()=>itemTF(s,d,q,i))};
+    opts.append(b)});
+  body.append(opts);li.append(body);
+  if(rev){mark(li,has?d.tf[i]===ans:false);const w=el("div","why");w.innerHTML=`<b>${ans?"True.":"False."}</b> `;w.append(document.createTextNode(why));li.append(w)}
+  return li;
+}
+
+function itemMC(s,d,q,i){
+  const [tp,stem,opts,key,why,keep]=q, li=el("li","item"), has=i in d.mc, rev=isRevealed(d)&&(has||d.checked);
+  li.id=`s${s.id}-mc-${i+1}`;
+  li.append(el("div","num",String(i+21)));
+  const body=el("div");body.append(el("div","tag",TOPIC[tp]),el("p","stem",stem));
+  const box=el("div","opts");
+  order(s.id,i,opts.length,keep).forEach((oi,pos)=>{
+    const b=el("button","bub");b.type="button";b.append(el("span","dot","ABCD"[pos]),el("span",null,opts[oi]));
+    if(has&&d.mc[i]===oi)b.classList.add("sel");
+    if(rev){if(oi===key)b.classList.add("is-key");else if(has&&d.mc[i]===oi)b.classList.add("is-wrong");b.disabled=true}
+    b.setAttribute("aria-pressed",String(has&&d.mc[i]===oi));
+    b.onclick=()=>{d.mc[i]=oi;save();refreshItem(li,()=>itemMC(s,d,q,i))};
+    box.append(b)});
+  body.append(box);li.append(body);
+  if(rev){mark(li,has?d.mc[i]===key:false);const w=el("div","why");w.innerHTML=`<b>Answer: ${"ABCD"[order(s.id,i,opts.length,keep).indexOf(key)]}.</b> `;w.append(document.createTextNode(why));li.append(w)}
+  return li;
+}
+
+function refreshItem(li,make){const n=make();li.replaceWith(n);renderScore();renderTabs()}
+
+function problem(s,d,p,i){
+  const ps=d.ps[i]||(d.ps[i]={notes:"",shown:false,score:""});
+  const card=el("article","prob");card.id=`s${s.id}-ps-${i+1}`;
+  let prompt=p.prompt,sol=p.solution;if(p.type==="crypt"){const c=cryptProblem(p);prompt=c.prompt;sol=c.sol}
+  card.innerHTML=`<div class="prob-head"><span class="pn">${i+1}</span><h3>${p.title}</h3><span class="pts">5 pts</span></div><div class="txt">${prompt}</div>`;
+  const lab=el("label","lab","Scratch work");const tid=`notes-${s.id}-${i}`;lab.htmlFor=tid;
+  const ta=el("textarea");ta.id=tid;ta.value=ps.notes;ta.placeholder="Work it out here before opening the solution.";
+  ta.oninput=()=>{ps.notes=ta.value;save()};
+  const actions=el("div","prob-actions");
+  const btn=el("button","btn ghost",ps.shown?"Hide solution":"Show solution");btn.type="button";
+  const sid=`score-${s.id}-${i}`;const sl=el("label","lab","Your score");sl.htmlFor=sid;
+  const sel=el("select");sel.id=sid;sel.innerHTML=`<option value="">–</option>`+[0,1,2,3,4,5].map(n=>`<option value="${n}">${n} / 5</option>`).join("");sel.value=ps.score;
+  sel.onchange=()=>{ps.score=sel.value;save();renderScore()};
+  actions.append(btn,sl,sel);
+  const solBox=el("div","sol txt");solBox.innerHTML=`<div class="k">Solution</div>${sol.replace(/<table class="mini/g,'<div class="tblwrap"><table class="mini').replace(/<\/table>/g,"</table></div>").replace(/<div class="tblwrap"><div class="tblwrap">/g,'<div class="tblwrap">').replace(/<\/table><\/div><\/div>/g,"</table></div>")}`;
+  solBox.hidden=!ps.shown;
+  btn.onclick=()=>{ps.shown=!ps.shown;save();solBox.hidden=!ps.shown;btn.textContent=ps.shown?"Hide solution":"Show solution"};
+  card.append(lab,ta,actions,solBox);
+  return card;
+}
+
+function tally(s,d){
+  const t={tf:0,mc:0,ps:0,psN:0,answered:0,topic:{L:[0,0],S:[0,0],N:[0,0]}};
+  const counted=(has)=>st.mode==="practice"?has:d.checked;
+  s.tf.forEach((q,i)=>{const has=i in d.tf;if(has)t.answered++;if(!counted(has))return;const ok=has&&d.tf[i]===q[2];if(ok)t.tf++;t.topic[q[0]][1]++;if(ok)t.topic[q[0]][0]++});
+  s.mc.forEach((q,i)=>{const has=i in d.mc;if(has)t.answered++;if(!counted(has))return;const ok=has&&d.mc[i]===q[3];if(ok)t.mc++;t.topic[q[0]][1]++;if(ok)t.topic[q[0]][0]++});
+  Object.values(d.ps).forEach(p=>{if(p&&p.score!==""&&p.score!=null){t.ps+=+p.score;t.psN++}});
+  return t;
+}
+
+function renderScore(){
+  const s=SETS.find(x=>x.id===st.set), d=D(s.id), t=tally(s,d), box=document.getElementById("score");
+  document.getElementById("count").textContent=`${t.answered}/70 answered`;
+  const showing=isRevealed(d);
+  const total=t.tf+t.mc+t.ps;
+  let note;
+  if(st.mode==="exam"&&!d.checked) note="Exam mode: answers stay hidden until you press Check answers. Your score appears here afterwards.";
+  else if(st.mode==="practice") note="Practice mode scores the items you have answered so far. Self-score the problems after opening each solution.";
+  else note="Checked. Missed items are marked in orange with the correct answer in green.";
+  const pct=(a,b)=>b?Math.round(100*a/b):0;
+  box.innerHTML=`<div class="score-head"><div class="score-total">${showing?total:"—"}<small> / 85</small></div><div class="score-note">${note}</div></div>
+  <div class="parts">
+    <div class="part"><div class="k">I · True/False</div><div class="v">${showing?t.tf:"—"} / 20</div></div>
+    <div class="part"><div class="k">II · Multiple choice</div><div class="v">${showing?t.mc:"—"} / 50</div></div>
+    <div class="part"><div class="k">III · Problems</div><div class="v">${t.ps} / 15</div></div>
+  </div>
+  ${showing?`<div class="topics">${Object.entries(t.topic).map(([k,[c,n]])=>`<div class="topic"><span>${TOPIC[k]}</span><div class="track"><div class="fill" style="width:${pct(c,n)}%"></div></div><span class="n">${c}/${n}</span></div>`).join("")}</div>
+  <label class="filter"><input type="checkbox" id="hideRight" ${st.hideRight?"checked":""}> Show only items I missed</label>`:""}`;
+  const hr=document.getElementById("hideRight");
+  if(hr)hr.onchange=()=>{st.hideRight=hr.checked;save();document.getElementById("main").classList.toggle("hide-correct",st.hideRight)};
+}
+
+document.getElementById("modePractice").onclick=()=>{st.mode="practice";save();render()};
+document.getElementById("modeExam").onclick=()=>{st.mode="exam";save();render()};
+document.getElementById("checkBtn").onclick=()=>{D(st.set).checked=true;save();render();document.getElementById("score").scrollIntoView({block:"start"})};
+const rb=document.getElementById("resetBtn");let armed=false,timer;
+rb.onclick=()=>{
+  if(!armed){armed=true;rb.textContent="Tap again to clear Set "+st.set;timer=setTimeout(()=>{armed=false;rb.textContent="Reset set"},3000);return}
+  clearTimeout(timer);armed=false;rb.textContent="Reset set";st.data[st.set]={tf:{},mc:{},ps:{},checked:false};save();render();window.scrollTo({top:0})};
+render();
+})();
+</script>
+
+</body></html>
